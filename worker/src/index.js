@@ -132,7 +132,7 @@ router.all('*', () => {
 export default {
   async fetch(request, env, ctx) {
     try {
-      return await router.handle(request, env, ctx);
+      return await router.fetch(request, env, ctx);
     } catch (err) {
       console.error('Unhandled error:', err.message, err.stack);
       return errorResponse('Internal error', 500);
