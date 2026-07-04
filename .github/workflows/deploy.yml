@@ -3,6 +3,12 @@ name: Deploy WhatsApp Dashboard
 on:
   push:
     branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
 
 jobs:
   # ========================
@@ -20,8 +26,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
-          cache-dependency-path: './worker/package-lock.json'
       
       - name: Install dependencies
         run: npm install
@@ -36,13 +40,11 @@ jobs:
             WHATSAPP_TOKEN
             WHATSAPP_PHONE_ID
             WHATSAPP_APP_SECRET
-            WHATSAPP_VERIFY_TOKEN
             JWT_SECRET
         env:
           WHATSAPP_TOKEN: ${{ secrets.WHATSAPP_TOKEN }}
           WHATSAPP_PHONE_ID: ${{ secrets.WHATSAPP_PHONE_ID }}
           WHATSAPP_APP_SECRET: ${{ secrets.WHATSAPP_APP_SECRET }}
-          WHATSAPP_VERIFY_TOKEN: ${{ secrets.WHATSAPP_VERIFY_TOKEN }}
           JWT_SECRET: ${{ secrets.JWT_SECRET }}
 
   # ========================
@@ -60,8 +62,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
-          cache-dependency-path: './frontend/package-lock.json'
       
       - name: Install dependencies
         run: npm install
