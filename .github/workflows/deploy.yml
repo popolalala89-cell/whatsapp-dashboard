@@ -31,22 +31,26 @@ jobs:
         run: npm install
       
       - name: Deploy to Cloudflare Workers
-        uses: cloudflare/wrangler-action@v4
+        uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
           workingDirectory: ./worker
           command: deploy
-          secrets: |
-            WHATSAPP_TOKEN
-            WHATSAPP_PHONE_ID
-            WHATSAPP_APP_SECRET
-            JWT_SECRET
-          wranglerVersion: "4.107.0"
         env:
           WHATSAPP_TOKEN: ${{ secrets.WHATSAPP_TOKEN }}
           WHATSAPP_PHONE_ID: ${{ secrets.WHATSAPP_PHONE_ID }}
           WHATSAPP_APP_SECRET: ${{ secrets.WHATSAPP_APP_SECRET }}
           JWT_SECRET: ${{ secrets.JWT_SECRET }}
+      
+      - name: Upload secrets to deployed worker
+        working-directory: ./worker
+        run: |
+          echo '${{ secrets.WHATSAPP_TOKEN }}' | npx wrangler secret put WHATSAPP_TOKEN
+          echo '${{ secrets.WHATSAPP_PHONE_ID }}' | npx wrangler secret put WHATSAPP_PHONE_ID
+          echo '${{ secrets.WHATSAPP_APP_SECRET }}' | npx wrangler secret put WHATSAPP_APP_SECRET
+          echo '${{ secrets.JWT_SECRET }}' | npx wrangler secret put JWT_SECRET
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
 
   # ========================
   # DEPLOY FRONTEND TO GITHUB PAGES
