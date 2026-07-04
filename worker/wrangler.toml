@@ -6,7 +6,7 @@ compatibility_date = "2024-12-01"
 [[d1_databases]]
 binding = "DB"
 database_name = "whatsapp-dashboard"
-database_id = ""  # Isi setelah create database via Cloudflare Dashboard
+database_id = "087bf62d-c914-4a5b-ad85-9dc1c80524c4"
 
 # Variables (set via wrangler secret or dashboard)
 # WHATSAPP_TOKEN: WhatsApp Cloud API access token
