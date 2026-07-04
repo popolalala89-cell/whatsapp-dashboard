@@ -49,6 +49,7 @@ jobs:
           echo '${{ secrets.WHATSAPP_PHONE_ID }}' | npx wrangler secret put WHATSAPP_PHONE_ID
           echo '${{ secrets.WHATSAPP_APP_SECRET }}' | npx wrangler secret put WHATSAPP_APP_SECRET
           echo '${{ secrets.JWT_SECRET }}' | npx wrangler secret put JWT_SECRET
+          echo '766B5Ueusjgp0yCmif2Nqw' | npx wrangler secret put WHATSAPP_VERIFY_TOKEN
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
 
