@@ -234,6 +234,7 @@ export async function login(request, env) {
       }
     });
   } catch (e) {
-    return errorResponse('Invalid request body', 400);
+    console.error('Login error:', e.message, e.stack);
+    return errorResponse('Login failed: ' + e.message, 400);
   }
 }

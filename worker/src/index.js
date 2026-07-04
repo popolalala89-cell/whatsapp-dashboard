@@ -36,12 +36,7 @@ router.post('/webhook', async (request, env) => {
 // Auth (public)
 // ========================
 router.post('/api/auth/login', async (request, env) => {
-  try {
-    const raw = await request.text();
-    return jsonResponse({ received: raw, parsed: JSON.parse(raw), env_keys: Object.keys(env).filter(k => k !== 'DB') });
-  } catch (e) {
-    return errorResponse('Parse error: ' + e.message, 400);
-  }
+  return auth.login(request, env);
 });
 
 // ========================
