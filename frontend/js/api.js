@@ -1,5 +1,5 @@
 // API Base URL
-const API_BASE = 'https://api.mydigitalid.my.id';
+const API_BASE = 'https://whatsapp-dashboard.popolalala89.workers.dev';
 
 // Token storage key
 const TOKEN_KEY = 'wa_dashboard_token';
