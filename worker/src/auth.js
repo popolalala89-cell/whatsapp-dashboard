@@ -1,6 +1,9 @@
 // Auth Module — PBKDF2 password hashing + JWT tokens
 // Uses Web Crypto API (no external dependencies)
 
+import { jsonResponse, errorResponse } from './utils.js';
+import { getAdminByUsername } from './db.js';
+
 const ALGORITHM = 'SHA-256';
 const ITERATIONS = 100000;
 const KEY_LENGTH = 32; // 256 bits
@@ -169,8 +172,6 @@ export async function verifyJWT(token, secret) {
 // Auth Middleware
 // ========================
 
-import { jsonResponse } from './utils.js';
-
 /**
  * Auth middleware — extracts and verifies JWT from Authorization header
  * Returns admin payload on success, or 401 Response on failure
@@ -194,9 +195,6 @@ export async function authMiddleware(request, env) {
 // ========================
 // Login Handler
 // ========================
-
-import { jsonResponse, errorResponse } from './utils.js';
-import { getAdminByUsername } from './db.js';
 
 /**
  * POST /api/auth/login
