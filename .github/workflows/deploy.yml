@@ -31,7 +31,7 @@ jobs:
         run: npm install
       
       - name: Deploy to Cloudflare Workers
-        uses: cloudflare/wrangler-action@v3
+        uses: cloudflare/wrangler-action@v4
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
           workingDirectory: ./worker
@@ -41,6 +41,7 @@ jobs:
             WHATSAPP_PHONE_ID
             WHATSAPP_APP_SECRET
             JWT_SECRET
+          wranglerVersion: "4.107.0"
         env:
           WHATSAPP_TOKEN: ${{ secrets.WHATSAPP_TOKEN }}
           WHATSAPP_PHONE_ID: ${{ secrets.WHATSAPP_PHONE_ID }}
