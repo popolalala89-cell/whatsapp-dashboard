@@ -15,5 +15,4 @@ database_id = "087bf62d-c914-4a5b-ad85-9dc1c80524c4"
 # WHATSAPP_VERIFY_TOKEN: Token for webhook verification (custom string)
 # JWT_SECRET: Secret key for JWT signing
 
-[env.production]
-vars = { WHATSAPP_VERIFY_TOKEN = "dashboard-verify-2026" }
+vars = { WHATSAPP_VERIFY_TOKEN = "766B5Ueusjgp0yCmif2Nqw" }
