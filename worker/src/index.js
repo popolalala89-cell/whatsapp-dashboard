@@ -36,7 +36,14 @@ router.post('/webhook', async (request, env) => {
 // Auth (public)
 // ========================
 router.post('/api/auth/login', async (request, env) => {
-  return auth.login(request, env);
+  // Debug: check if env has JWT_SECRET
+  const hasJwt = typeof env.JWT_SECRET !== 'undefined';
+  const jwtLen = env.JWT_SECRET ? env.JWT_SECRET.length : 0;
+  return jsonResponse({
+    env_has_jwt: hasJwt,
+    jwt_length: jwtLen,
+    env_keys: Object.keys(env),
+  });
 });
 
 // ========================
