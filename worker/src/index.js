@@ -6,6 +6,7 @@ import * as webhook from './webhook.js';
 import * as auth from './auth.js';
 import * as api from './api.js';
 import { jsonResponse, corsHeaders, errorResponse } from './utils.js';
+import * as db from './db.js';
 
 // Create router
 const router = Router();
@@ -36,6 +37,34 @@ router.post('/webhook', async (request, env) => {
 // ========================
 router.post('/api/auth/login', async (request, env) => {
   return auth.login(request, env);
+});
+
+// ========================
+// Setup — Create first admin (one-time)
+// ========================
+router.post('/api/setup', async (request, env) => {
+  try {
+    // Check if any admin already exists
+    const existing = await env.DB.prepare('SELECT COUNT(*) as count FROM admins').first();
+    if (existing.count > 0) {
+      return jsonResponse({ error: 'Setup already completed' }, 400);
+    }
+
+    const body = await request.json();
+    const { username, password, display_name } = body;
+
+    if (!username || !password || password.length < 6) {
+      return jsonResponse({ error: 'username and password (min 6 chars) required' }, 400);
+    }
+
+    const passwordHash = await auth.hashPassword(password);
+    const id = await db.createAdmin(env.DB, username, passwordHash, display_name || username);
+
+    return jsonResponse({ ok: true, message: 'Admin created', admin: { id, username } }, 201);
+  } catch (e) {
+    console.error('Setup error:', e.message);
+    return errorResponse('Setup failed: ' + e.message, 500);
+  }
 });
 
 // ========================
