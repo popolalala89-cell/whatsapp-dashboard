@@ -1,0 +1,76 @@
+name: Deploy WhatsApp Dashboard
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  # ========================
+  # DEPLOY WORKER TO CLOUDFLARE
+  # ========================
+  deploy-worker:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./worker
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+          cache-dependency-path: './worker/package-lock.json'
+      
+      - name: Install dependencies
+        run: npm install
+      
+      - name: Deploy to Cloudflare Workers
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CF_API_TOKEN }}
+          workingDirectory: ./worker
+          command: deploy
+          secrets: |
+            WHATSAPP_TOKEN
+            WHATSAPP_PHONE_ID
+            WHATSAPP_APP_SECRET
+            WHATSAPP_VERIFY_TOKEN
+            JWT_SECRET
+        env:
+          WHATSAPP_TOKEN: ${{ secrets.WHATSAPP_TOKEN }}
+          WHATSAPP_PHONE_ID: ${{ secrets.WHATSAPP_PHONE_ID }}
+          WHATSAPP_APP_SECRET: ${{ secrets.WHATSAPP_APP_SECRET }}
+          WHATSAPP_VERIFY_TOKEN: ${{ secrets.WHATSAPP_VERIFY_TOKEN }}
+          JWT_SECRET: ${{ secrets.JWT_SECRET }}
+
+  # ========================
+  # DEPLOY FRONTEND TO GITHUB PAGES
+  # ========================
+  deploy-frontend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./frontend
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+          cache-dependency-path: './frontend/package-lock.json'
+      
+      - name: Install dependencies
+        run: npm install
+      
+      - name: Build
+        run: npm run build
+      
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./frontend/dist

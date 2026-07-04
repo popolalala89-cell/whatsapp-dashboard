@@ -1,0 +1,19 @@
+name = "whatsapp-dashboard"
+main = "src/index.js"
+compatibility_date = "2024-12-01"
+
+# D1 Database
+[[d1_databases]]
+binding = "DB"
+database_name = "whatsapp-dashboard"
+database_id = ""  # Isi setelah create database via Cloudflare Dashboard
+
+# Variables (set via wrangler secret or dashboard)
+# WHATSAPP_TOKEN: WhatsApp Cloud API access token
+# WHATSAPP_PHONE_ID: Phone number ID dari Meta
+# WHATSAPP_APP_SECRET: App Secret dari Meta App
+# WHATSAPP_VERIFY_TOKEN: Token for webhook verification (custom string)
+# JWT_SECRET: Secret key for JWT signing
+
+[env.production]
+vars = { WHATSAPP_VERIFY_TOKEN = "dashboard-verify-2026" }

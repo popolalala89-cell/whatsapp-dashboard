@@ -1,0 +1,15 @@
+{
+  "name": "whatsapp-dashboard-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "WhatsApp Chat Management Dashboard - Apple HIG Frontend",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^8.1.3"
+  }
+}

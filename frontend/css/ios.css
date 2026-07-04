@@ -1,0 +1,558 @@
+/* =============================================
+   iOS Mobile Layout (<768px)
+   ============================================= */
+
+@media (max-width: 767px) {
+
+/* === iOS Status Bar Area === */
+.ios-statusbar {
+  height: env(safe-area-inset-top, 20px);
+  background: var(--bg-secondary);
+  flex-shrink: 0;
+}
+
+/* === iOS Navigation === */
+.ios-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px;
+  padding-top: 4px;
+  background: var(--bg-secondary);
+  flex-shrink: 0;
+}
+
+.ios-nav.large-title {
+  flex-direction: column;
+  align-items: flex-start;
+  padding-bottom: 4px;
+}
+
+.ios-nav.large-title .nav-title {
+  font-size: 34px;
+  font-weight: 700;
+  color: var(--bubble-customer-text);
+}
+
+.ios-nav .nav-back {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  color: var(--system-blue);
+  font-size: 17px;
+  font-weight: 400;
+}
+
+.ios-nav .nav-back .chevron {
+  font-size: 20px;
+  line-height: 1;
+}
+
+.ios-nav .nav-title {
+  font-size: 17px;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ios-nav .nav-right {
+  color: var(--system-blue);
+  font-size: 17px;
+}
+
+/* === iOS Search === */
+.ios-search-container {
+  padding: 8px 16px 10px;
+  background: var(--bg-secondary);
+  flex-shrink: 0;
+}
+
+.ios-search-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.ios-search-input-wrap .search-icon {
+  position: absolute;
+  left: 10px;
+  color: var(--system-gray);
+  font-size: 15px;
+  pointer-events: none;
+}
+
+.ios-search-input {
+  width: 100%;
+  height: 36px;
+  padding: 0 12px 0 34px;
+  border-radius: var(--radius-md);
+  background: var(--system-gray5);
+  font-size: 16px;
+  color: var(--bubble-customer-text);
+  transition: background var(--transition-fast);
+}
+
+.ios-search-input:focus {
+  background: var(--bg-primary);
+  box-shadow: 0 0 0 2px var(--system-blue);
+}
+
+.ios-search-input::placeholder {
+  color: var(--system-gray);
+}
+
+/* === iOS Chat List Screen === */
+.ios-chat-list-screen {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--bg-primary);
+}
+
+.ios-chat-list {
+  flex: 1;
+  overflow-y: auto;
+  background: var(--bg-primary);
+}
+
+/* Chat list items (iOS style) */
+.ios-chat-list .chat-list-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: background var(--transition-fast);
+  border-bottom: 1px solid var(--system-gray6);
+}
+
+.ios-chat-list .chat-list-item:active {
+  background: var(--system-gray6);
+}
+
+.ios-chat-list .chat-list-item .chat-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--system-gray5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--system-gray);
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.ios-chat-list .chat-list-item .chat-info {
+  flex: 1;
+  min-width: 0;
+  margin-left: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.ios-chat-list .chat-list-item .chat-info-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ios-chat-list .chat-list-item .chat-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--bubble-customer-text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ios-chat-list .chat-list-item .chat-time {
+  font-size: 12px;
+  color: var(--system-gray);
+  flex-shrink: 0;
+  margin-left: 6px;
+}
+
+.ios-chat-list .chat-list-item .chat-info-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ios-chat-list .chat-list-item .chat-preview {
+  font-size: 14px;
+  color: var(--system-gray);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+}
+
+.ios-chat-list .chat-list-item .unread-badge {
+  background: var(--system-blue);
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+  min-width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 6px;
+  flex-shrink: 0;
+  margin-left: 6px;
+}
+
+/* === iOS Chat Detail Screen === */
+.ios-chat-detail-screen {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--bg-secondary);
+}
+
+/* Messages in iOS */
+.ios-chat-detail-screen .chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background:
+    linear-gradient(180deg, rgba(242,242,247,0.9) 0%, rgba(242,242,247,0) 40px);
+}
+
+.ios-chat-detail-screen .message {
+  max-width: 80%;
+}
+
+.ios-chat-detail-screen .message.customer .message-bubble {
+  border-radius: var(--radius-lg);
+  border-bottom-left-radius: 4px;
+}
+
+.ios-chat-detail-screen .message.admin .message-bubble {
+  border-radius: var(--radius-lg);
+  border-bottom-right-radius: 4px;
+}
+
+/* iOS Input Bar */
+.ios-chat-detail-screen .chat-input-bar {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  padding-bottom: calc(8px + env(safe-area-inset-bottom, 0));
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid var(--system-gray5);
+  flex-shrink: 0;
+  gap: 8px;
+}
+
+.ios-chat-detail-screen .chat-input-bar .input-field {
+  flex: 1;
+  min-height: 36px;
+  max-height: 100px;
+  padding: 8px 14px;
+  border-radius: 18px;
+  background: var(--system-gray6);
+  font-size: 16px;
+  line-height: 1.4;
+  resize: none;
+  overflow-y: auto;
+}
+
+.ios-chat-detail-screen .chat-input-bar .input-field:focus {
+  background: var(--bg-primary);
+  box-shadow: 0 0 0 1.5px var(--system-blue);
+}
+
+.ios-chat-detail-screen .chat-input-bar .send-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--system-blue);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  transition: opacity var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.ios-chat-detail-screen .chat-input-bar .send-btn:active {
+  opacity: 0.7;
+}
+
+.ios-chat-detail-screen .chat-input-bar .send-btn:disabled {
+  background: var(--system-gray5);
+  color: var(--system-gray);
+}
+
+.ios-chat-detail-screen .chat-input-bar .input-action-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: var(--system-gray);
+  transition: background var(--transition-fast);
+}
+
+/* === iOS Bottom Tab Bar === */
+.ios-tabbar {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-around;
+  height: calc(50px + env(safe-area-inset-bottom, 0));
+  padding-top: 8px;
+  padding-bottom: env(safe-area-inset-bottom, 0);
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid var(--system-gray5);
+  flex-shrink: 0;
+  z-index: var(--z-tabbar);
+  position: relative;
+}
+
+.ios-tabbar .tab-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 0 16px;
+  cursor: pointer;
+  transition: color var(--transition-fast);
+  color: var(--system-gray);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.ios-tabbar .tab-item.active {
+  color: var(--system-blue);
+}
+
+.ios-tabbar .tab-item .tab-icon {
+  font-size: 24px;
+  line-height: 1;
+}
+
+.ios-tabbar .tab-item .tab-label {
+  font-size: 10px;
+  font-weight: 500;
+}
+
+/* === iOS Empty State (Status / Settings) === */
+.ios-empty-state {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--system-gray);
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.ios-empty-state .empty-icon {
+  font-size: 48px;
+  margin-bottom: 12px;
+  opacity: 0.4;
+}
+
+.ios-empty-state .empty-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--bubble-customer-text);
+  margin-bottom: 4px;
+}
+
+.ios-empty-state .empty-desc {
+  font-size: 14px;
+  color: var(--system-gray);
+}
+
+/* === iOS Login Screen === */
+.ios-login-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 40px 24px;
+  background: var(--bg-primary);
+}
+
+.ios-login-screen .login-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 20px;
+  background: var(--system-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+  color: white;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(0, 122, 255, 0.3);
+}
+
+.ios-login-screen h1 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.ios-login-screen .login-subtitle {
+  font-size: 15px;
+  color: var(--system-gray);
+  margin-bottom: 32px;
+}
+
+.ios-login-screen .form-group {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.ios-login-screen label {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--system-gray);
+  margin-bottom: 6px;
+}
+
+.ios-login-screen input {
+  width: 100%;
+  height: 44px;
+  padding: 0 14px;
+  border: 1px solid var(--system-gray5);
+  border-radius: var(--radius-md);
+  font-size: 16px;
+  background: var(--bg-secondary);
+  transition: border-color var(--transition-fast);
+}
+
+.ios-login-screen input:focus {
+  border-color: var(--system-blue);
+  background: var(--bg-primary);
+}
+
+.ios-login-screen .login-btn {
+  width: 100%;
+  height: 48px;
+  background: var(--system-blue);
+  color: white;
+  border-radius: var(--radius-md);
+  font-size: 17px;
+  font-weight: 600;
+  margin-top: 16px;
+  transition: opacity var(--transition-fast);
+}
+
+.ios-login-screen .login-btn:active {
+  opacity: 0.8;
+}
+
+.ios-login-screen .login-error {
+  color: var(--system-red);
+  font-size: 14px;
+  text-align: center;
+  margin-top: 12px;
+  display: none;
+}
+
+.ios-login-screen .login-error.visible {
+  display: block;
+}
+
+/* === iOS Template Overlay === */
+.ios-template-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: var(--z-overlay);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  animation: fadeIn var(--transition-fast) ease;
+}
+
+.ios-template-panel {
+  background: var(--bg-primary);
+  border-radius: 14px 14px 0 0;
+  width: 100%;
+  max-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  animation: slideUp var(--transition-normal) ease;
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
+
+.ios-template-panel .template-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--system-gray6);
+}
+
+.ios-template-panel .template-panel-header h3 {
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.ios-template-panel .template-panel-header .close-btn {
+  font-size: 22px;
+  color: var(--system-gray);
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ios-template-panel .template-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px;
+}
+
+.ios-template-panel .template-item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 14px 16px;
+  font-size: 16px;
+  color: var(--bubble-customer-text);
+  transition: background var(--transition-fast);
+  line-height: 1.4;
+  border-bottom: 1px solid var(--system-gray6);
+}
+
+.ios-template-panel .template-item:active {
+  background: var(--system-gray6);
+}
+
+.ios-template-panel .template-item:last-child {
+  border-bottom: none;
+}
+
+.ios-template-panel .template-item-name {
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--system-gray);
+  display: block;
+  margin-bottom: 3px;
+}
+
+} /* end @media (max-width: 767px) */
